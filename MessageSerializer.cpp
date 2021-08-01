@@ -23,6 +23,7 @@ bool MessageSerializer::serialize(std::vector<uint16_t>& in, std::vector<uint8_t
     const uint16_t fullMsgSize = START_MARKER_SIZE + MSG_HEADER_SIZE + msgSizeBytes + CRC_SIZE + END_MARKER_SIZE;
 
     out.resize(fullMsgSize);
+    memset(&out.front(), 0, out.size());
     uint8_t* msg = &out.front();
 
     memcpy(msg, reinterpret_cast<const uint8_t*>(&msc_startMarker), START_MARKER_SIZE);
